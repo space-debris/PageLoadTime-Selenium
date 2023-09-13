@@ -24,11 +24,11 @@ for nav in nav_bar:
     driver.get(nav_bar.get(nav))
     navigationStart = driver.execute_script('return window.performance.timing.navigationStart')
     responseStart = driver.execute_script('return window.performance.timing.responseStart')
-    loadEventEnd = driver.execute_script('return window.performance.timing.loadEventEnd')
+    domComplete = driver.execute_script('return window.performance.timing.domComplete')
     #backendtime=resposeStart-navigationStart
     backend_time=load_time(responseStart,navigationStart)
-    #frontendtime=loadEventEnd-responseStart
-    frontend_time=load_time(loadEventEnd,responseStart)
+    #frontendtime=domComplete-responseStart
+    frontend_time=load_time(domComplete,responseStart)
     html_table+=f'<tr><td><a href="{nav_bar.get(nav)}" target="_blank">{nav}</a></td><td>{backend_time}</td><td>{frontend_time}</td></tr>'
 
 html_table+="</table></body></html>"
